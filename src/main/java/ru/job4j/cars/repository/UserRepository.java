@@ -104,7 +104,8 @@ public class UserRepository {
      */
     public List<User> findByLikeLogin(String key) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery("from User as i where i.name LIKE :fName", User.class);
+        Query<User> query = session
+                .createQuery("from User as i where i.name LIKE :fName", User.class);
         query.setParameter("fName", key);
         return new ArrayList<>(query.list());
     }
