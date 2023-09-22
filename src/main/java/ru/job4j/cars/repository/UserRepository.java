@@ -97,7 +97,8 @@ public class UserRepository {
         Session session = sf.openSession();
         Optional<User> user = Optional.empty();
         try {
-            Query<User> query = session.createQuery("from User as i where i.id = :fId", User.class);
+            Query<User> query = session
+                    .createQuery("from User as i where i.id = :fId", User.class);
             query.setParameter("fId", userId);
             user = query.uniqueResultOptional();
         } catch (Exception e) {
@@ -136,7 +137,8 @@ public class UserRepository {
         Session session = sf.openSession();
         Optional<User> user = Optional.empty();
         try {
-            Query<User> query = session.createQuery("from User as i where i.name = :fName", User.class);
+            Query<User> query = session
+                    .createQuery("from User as i where i.name = :fName", User.class);
             query.setParameter("fName", login);
             user = query.uniqueResultOptional();
         } catch (Exception e) {
