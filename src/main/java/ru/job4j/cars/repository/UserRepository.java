@@ -75,11 +75,16 @@ public class UserRepository {
      * @return список пользователей.
      */
     public List<User> findAllOrderById() {
-       Session session = sf.openSession();
-        Query query = session.createQuery(
-                "from User");
-        List<User> result = new ArrayList<>(query.list());
-        result.sort(Comparator.comparingInt(User::getId));
+        Session session = sf.openSession();
+        List<User> result = new ArrayList<>();
+        try {
+            Query query = session.createQuery(
+                    "from User");
+            result = new ArrayList<>(query.list());
+            result.sort(Comparator.comparingInt(User::getId));
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
         return result;
     }
 
@@ -90,10 +95,15 @@ public class UserRepository {
      */
     public Optional<User> findById(int userId) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery("from User as i where i.id = :fId", User.class);
-        query.setParameter("fId", userId);
-        User user = query.getSingleResult();
-        return Optional.of(user);
+        Optional<User> user = Optional.empty();
+        try {
+            Query<User> query = session.createQuery("from User as i where i.id = :fId", User.class);
+            query.setParameter("fId", userId);
+            user = query.uniqueResultOptional();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+        return user;
     }
 
     /**
@@ -104,10 +114,16 @@ public class UserRepository {
      */
     public List<User> findByLikeLogin(String key) {
         Session session = sf.openSession();
-        Query<User> query = session
-                .createQuery("from User as i where i.name LIKE :fName", User.class);
-        query.setParameter("fName", key);
-        return new ArrayList<>(query.list());
+        List<User> list = new ArrayList<>();
+        try {
+            Query<User> query = session
+                    .createQuery("from User as i where i.name LIKE :fName", User.class);
+            query.setParameter("fName", key);
+            list = query.list();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+        return list;
     }
 
     /**
@@ -118,9 +134,14 @@ public class UserRepository {
      */
     public Optional<User> findByLogin(String login) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery("from User as i where i.name = :fName", User.class);
-        query.setParameter("fName", login);
-        List<User> result = new ArrayList<>(query.list());
-        return Optional.of(result.get(0));
+        Optional<User> user = Optional.empty();
+        try {
+            Query<User> query = session.createQuery("from User as i where i.name = :fName", User.class);
+            query.setParameter("fName", login);
+            user = query.uniqueResultOptional();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+        return user;
     }
 }
