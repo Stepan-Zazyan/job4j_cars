@@ -78,10 +78,7 @@ public class UserRepository {
         Session session = sf.openSession();
         List<User> result = new ArrayList<>();
         try {
-            Query query = session.createQuery(
-                    "from User");
-            result = new ArrayList<>(query.list());
-            result.sort(Comparator.comparingInt(User::getId));
+            result = session.createQuery("from User order by id").list();
         } catch (Exception e) {
             session.getTransaction().rollback();
         }
