@@ -24,8 +24,8 @@ public class HbmRun {
             var post = new Post();
             post.setName("Admin Admin");
             post.setPriceHistory(List.of(
-                    new PriceHistory(0, 2,3, LocalDateTime.now()),
-                    new PriceHistory(0,2,3, LocalDateTime.now())
+                    new PriceHistory(0, 2, 3, LocalDateTime.now()),
+                    new PriceHistory(0, 2, 3, LocalDateTime.now())
             ));
             post.setUser(user);
             create(post, sf);
@@ -34,7 +34,7 @@ public class HbmRun {
                     .setParameter("fId", post.getId())
                     .getSingleResult();
             stored.getPriceHistory().forEach(System.out::println);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
