@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -21,6 +22,4 @@ public class PriceHistory {
     private int before;
     private int after;
     private LocalDateTime created;
-    private int post_id;
-
 }

@@ -24,8 +24,8 @@ public class HbmRun {
             var post = new Post();
             post.setName("Admin Admin");
             post.setPriceHistory(List.of(
-                    new PriceHistory(1,2,3,LocalDateTime.now(), 1),
-                    new PriceHistory(2,2,3,LocalDateTime.now(), 2)
+                    new PriceHistory(0, 2,3, LocalDateTime.now()),
+                    new PriceHistory(0,2,3, LocalDateTime.now())
             ));
             post.setUser(user);
             create(post, sf);

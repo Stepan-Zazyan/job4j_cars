@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Table(name = "post")
-@Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "post")
 public class Post {
 
     @Id
@@ -22,7 +22,6 @@ public class Post {
     private String name;
     private String link;
     private String text;
-    private LocalDateTime created;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
