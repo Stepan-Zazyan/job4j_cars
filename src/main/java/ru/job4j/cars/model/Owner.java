@@ -15,5 +15,5 @@ public class Owner {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
-    private String user_id;
+    private String userId;
 }
