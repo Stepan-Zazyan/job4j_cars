@@ -1,0 +1,1 @@
+alter table car add constraint engine_id unique(engine_id);
