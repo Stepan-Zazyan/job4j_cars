@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -15,5 +17,8 @@ public class Owner {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
-    private String userId;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private List<CarHistory> carHistory = new ArrayList<>();
 }

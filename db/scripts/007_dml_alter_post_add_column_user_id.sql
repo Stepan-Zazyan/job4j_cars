@@ -1,1 +1,1 @@
-alter table post add column user_id int references users(id);
+alter table post add column user_id int references auto_user(id);

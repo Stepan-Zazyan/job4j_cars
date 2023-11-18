@@ -17,14 +17,13 @@ public class Car {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
-    private String engineId;
 
     @OneToOne
     @JoinColumn(name = "engine_id")
     private Engine engine;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

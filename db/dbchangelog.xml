@@ -19,4 +19,7 @@
     <include file="scripts/014_dml_alter_post_add_column_car_id.sql" relativeToChangelogFile="true"/>
     <include file="scripts/015_dml_alter_car_set_column_engine_id_unique.sql" relativeToChangelogFile="true"/>
     <include file="scripts/016_dml_alter_owners_add_column_car_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/017_dml_alter_history_add_column_owner_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/018_dml_alter_car_add_column_owner_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/019_dml_alter_auto_user_add_column_login.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
